@@ -77,6 +77,7 @@ dY = diff(mM_Y); midY = mM_Y(1)+dY/2;
 Cpos(:,1) = (Cpos(:,1)-midX)/dX*.95+.5;
 Cpos(:,2) = (Cpos(:,2)-midY)/dY*.95+.5;
 Cpos = Cpos';
+Rxy = 1.5;
 % fplot(Cpos(:,1),Cpos(:,2),'.')
 fn_chanTemp = 'decMEG_chanTemplate';
 save(fn_chanTemp,'Nchannels','Cnames','Cpos','Rxy')
@@ -142,8 +143,8 @@ for ii=1:N_dat
     D = chantype(D, 2:3:Nchannels, 'MEGGRAD');   % Sets the channel type
     D = chantype(D, 3:3:Nchannels, 'MEGGRAD');   % Sets the channel type
     D = chanlabels(D,1:Nchannels,Cnames); % Sets channel labels
-    D = conditions(D, find(y),  'Face');    % Sets the condition Face
-    D = conditions(D, find(~y), 'ScrF'); % Sets the condition ScrF
+    D = conditions(D, find(y),  'Face');  % Sets the condition Face
+    D = conditions(D, find(~y), 'ScrF');  % Sets the condition ScrF
     save(D);
         
     % Fix channel names and locations
